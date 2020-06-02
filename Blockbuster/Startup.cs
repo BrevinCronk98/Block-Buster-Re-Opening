@@ -7,6 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using BlockBuster.Models;
 
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Authorization;
+
 namespace BlockBuster
 {
   public class Startup
@@ -23,7 +26,21 @@ namespace BlockBuster
 
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddMvc();
+      services.AddDbContext<BlockBusterContext>(options =>
+        options.UseSqlServer(
+        Configuration.GetConnectionString("DefaultConnection")));
+      services.AddDefaultIdentity<IdentityUser>().AddRoles<IdentityRole>()
+        .AddEntityFrameworkStores<BlockBusterContext>();
+
+      services.AddMvc(config =>
+      {
+        var policy = new AuthorizationPolicyBuilder()
+          .RequireAuthenticatedUser()
+          .Build();
+        config.Filters.Add(new AuthorizeFilter(policy));
+      });
+      // .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
 
       services.AddEntityFrameworkMySql()
         .AddDbContext<BlockBusterContext>(options => options
@@ -42,6 +59,8 @@ namespace BlockBuster
         options.Password.RequireUppercase = false;
         options.Password.RequiredUniqueChars = 0;
       });
+
+
     }
 
     public void Configure(IApplicationBuilder app)
