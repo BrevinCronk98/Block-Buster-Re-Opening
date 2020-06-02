@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model BlockBuster.Models.Movie
+
+<h2>Add a director</h2>
+
+<h4>Add a director to this task: @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.MovieId)
+
+  @Html.Label("Select Director")
+  @Html.DropDownList("DirectorId")
+
+  <input type="submit" value="Save"/>
+}

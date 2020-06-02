@@ -75,9 +75,5 @@ namespace BlockBuster.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-
-
-
-
   }
 }

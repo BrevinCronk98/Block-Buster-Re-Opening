@@ -1,0 +1,21 @@
+@{
+    Layout ="_Layout";
+}
+
+@using BlockBuster.Models;
+@model List<BlockBuster.Models.Movie>;
+
+<h1>Movies</h1>
+
+@if(@Model.Count == 0)
+{
+    <h3> No Movies Have Been Added Yet!</h3>
+}
+
+@foreach(Movie movie in Model)
+{
+    <p>@Html.ActionLink($"{movie.Name}", "Details", new { id = movie.MovieId})</p>
+} 
+
+<p>@Html.ActionLink("Add a new Movie", "Create")</p>
+<p>@Html.ActionLink("Home Page", "Index", "Home")

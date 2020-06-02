@@ -1,0 +1,38 @@
+@{
+    Layout ="_Layout";
+}
+
+@model BlockBuster.Models.Movie
+
+<h2>Movie Details</h2>
+<hr />
+
+
+<h4>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h4>
+
+@if(@Model.Directors.Count == 0)
+{
+  <p> This Movie Doesn't Belong to Any Directors</p>
+}
+else{
+<h4> Director the Movie Belongs to</h4>
+@foreach(var join in Model.Directors)
+{
+  <p>@join.Director.Name</P>
+  @using (Html.BeginForm("DeleteDirector", "Movies"))
+  {
+    @Html.Hidden("joinId", @join.DirectorMovieId)
+    <input type="submit" value="Delete" />
+  }
+}
+<p>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</p>
+<p>@Html.DisplayNameFor(model => model.Year): @Html.DisplayFor(model => model.Year)</p>
+<p>@Html.DisplayNameFor(model => model.Copies): @Html.DisplayFor(model => model.Copies)</p>
+
+
+}
+
+<p>@Html.ActionLink("Back To List", "index")</p>
+<p>@Html.ActionLink("Edit Movie", "Edit", new { id = Model.MovieId})</p>
+<p>@Html.ActionLink("Delete Movie", "Delete", new { id = Model.MovieId})</p>
+<p>@Html.ActionLink("Add a Director", "AddDirector", new { id = Model.MovieId})</p>

@@ -1,0 +1,29 @@
+@{
+  Layout = "_Layout";
+}
+
+@model BlockBuster.Models.Director
+@using BlockBuster.Models
+
+<h2>Director Details</h2>
+
+<h3>@Html.DisplayFor(model => model.Name)</h3>
+
+@if(@Model.Movies.Count == 0)
+{
+  <p>No movies yet</p>
+}
+else
+{
+  <h4>Films by this director:</h4>
+  @foreach(var join in Model.Movies)
+  {
+    <p>@join.Movie.Name</p>
+  }
+}
+
+<p>@Html.ActionLink("Add Movie", "Create", "Movies")<p>
+<p>@Html.ActionLink("Edit Director", "Edit", new { id = Model.DirectorId })<p>
+<p>@Html.ActionLink("Delete Director", "Delete", new { id = Model.DirectorId })<p>
+<p>@Html.ActionLink("Back to Home Page", "Index", "Home")</p>
+<p>@Html.ActionLink("Show All Directors", "Index")</p>

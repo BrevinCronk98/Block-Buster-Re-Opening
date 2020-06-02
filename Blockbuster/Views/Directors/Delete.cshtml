@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+
+@model BlockBuster.Models.Director
+<h2> Are You Sure You Would Like to Remove This Director From the Database?</h2>
+
+@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)
+@using (Html.BeginForm())
+{
+  <input type="submit" value="Delete"/>
+}
+
+@Html.ActionLink("Back To Directors", "Index")

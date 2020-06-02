@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@using BlockBuster.Models
+@model List<BlockBuster.Models.Director>
+
+<h1>Directors</h1>
+
+@if(@Model.Count == 0)
+{
+  <p>Add a director to get started!</p>
+}
+
+@foreach (Director director in Model)
+{
+  <p>@Html.ActionLink($"{director.Name}", "Details", new { id = director.DirectorId })</p>
+}
+
+<p>@Html.ActionLink("Add a new director", "Create")</p>
+<p>@Html.ActionLink("Back to Home Page", "Index", "Home")</p>

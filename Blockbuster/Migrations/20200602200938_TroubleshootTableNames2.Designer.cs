@@ -3,14 +3,16 @@ using System;
 using BlockBuster.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blockbuster.Migrations
 {
     [DbContext(typeof(BlockBusterContext))]
-    partial class BlockBusterContextModelSnapshot : ModelSnapshot
+    [Migration("20200602200938_TroubleshootTableNames2")]
+    partial class TroubleshootTableNames2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

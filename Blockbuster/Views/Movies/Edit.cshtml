@@ -1,0 +1,31 @@
+@{
+    Layout ="_Layout";
+}
+
+@model BlockBuster.Models.Movie
+
+<h2>Edit</h2>
+
+<h4> Edit this Movie: @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.MovieId)
+
+    @Html.LabelFor(model => model.Name)
+    @Html.EditorFor(model => model.Name)
+
+    @Html.LabelFor(model => model.Description)
+    @Html.EditorFor(model => model.Description)
+
+    @Html.LabelFor(model => model.Year)
+    @Html.EditorFor(model => model.Year)
+
+    @Html.Label("Select Director")
+    @Html.DropDownList("DirectorId")
+
+    <input type="submit" value="Save" />
+}
+
+
+<p>@Html.ActionLink("Back To List", "Index")</p>
