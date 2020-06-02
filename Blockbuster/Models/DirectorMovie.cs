@@ -1,6 +1,6 @@
 namespace BlockBuster.Models
 {
-  public class DirectorMovies
+  public class DirectorMovie
   {
     public int DirectorMovieId { get; set; }
     public int MovieId { get; set; }

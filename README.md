@@ -134,6 +134,9 @@ _Have a bug or an issue with this application? [Open a new issue](https://github
 
 <!-- &#9745; -->
 
+### Resources
+(Background Image)[https://unsplash.com/photos/atsUqIm3wxo]
+
 #### License
 
 This software is licensed under the MIT license.

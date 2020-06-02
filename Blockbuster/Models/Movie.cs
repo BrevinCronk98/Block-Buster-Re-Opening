@@ -2,11 +2,11 @@ using System.Collections.Generic;
 
 namespace BlockBuster.Models
 {
-  public class Moive
+  public class Movie
   {
     public Movie()
     {
-      this.Directors = new HashSet<DirectorMovies>();
+      this.Directors = new HashSet<DirectorMovie>();
     }
 
     public int MovieId { get; set; }
@@ -16,6 +16,6 @@ namespace BlockBuster.Models
     public int Copies { get; set; }
 
     public virtual ApplicationUser User { get; set; }
-    public ICollection<DirectorMovies> Directors { get; }
+    public ICollection<DirectorMovie> Directors { get; }
   }
 }

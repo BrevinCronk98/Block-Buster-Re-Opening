@@ -6,11 +6,13 @@ namespace BlockBuster.Models
   {
     public Director()
     {
-      this.Movies = new HashSet<DirectorMovies>();
+      this.Movies = new HashSet<DirectorMovie>();
     }
 
     public int DirectorId { get; set; }
     public string Name { get; set; }
-    public virtual ICollection<DirectorMovies> Movies { get; set; }
+
+    public virtual ApplicationUser User { get; set; }
+    public virtual ICollection<DirectorMovie> Movies { get; set; }
   }
 }

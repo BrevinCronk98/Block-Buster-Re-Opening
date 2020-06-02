@@ -1,0 +1,17 @@
+body {
+  background: url(../img/background.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.box {
+  background: rgba(247, 246, 243, 0.85);
+  border-radius: 3px;
+  border: 8px solid rgb(30, 40, 45);
+  padding: 20px;
+  text-align: center;
+  margin: 20%;
+}
