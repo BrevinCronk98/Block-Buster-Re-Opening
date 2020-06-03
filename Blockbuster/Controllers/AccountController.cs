@@ -12,10 +12,24 @@ namespace BlockBuster.Controllers
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
 
-    public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, BlockBusterContext db)
+    private readonly RoleManager<IdentityRole> _roleManager;
+
+
+    // var roleManager = new RoleManager<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
+
+
+    //    if(!roleManager.RoleExists("ROLE NAME"))
+    //    {
+    //       var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+    //       role.Name = "ROLE NAME";
+    //       roleManager.Create(role);
+
+    //     }
+    public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager, BlockBusterContext db)
     {
       _userManager = userManager;
       _signInManager = signInManager;
+      _roleManager = roleManager;
       _db = db;
     }
 
@@ -33,7 +47,10 @@ namespace BlockBuster.Controllers
     public async Task<ActionResult> Register(RegisterViewModel model)
     {
       var user = new ApplicationUser { Email = model.Email, UserName = model.UserName };
+      var role = new IdentityRole();
+      role.Name = "User";
       IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+      IdentityResult roleResult = await _roleManager.CreateAsync(role);
       if (result.Succeeded)
       {
         return RedirectToAction("Index");

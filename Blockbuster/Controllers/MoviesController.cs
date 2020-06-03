@@ -58,7 +58,7 @@ namespace BlockBuster.Controllers
       return View(model);
     }
 
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public ActionResult Create()
     {
       ViewBag.DirectorId = new SelectList(_db.Directors, "DirectorId", "Name");
@@ -88,7 +88,7 @@ namespace BlockBuster.Controllers
       return View(thisMovie);
     }
 
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public ActionResult Edit(int id)
     {
       var thisMovie = _db.Movies.FirstOrDefault(movie => movie.MovieId == id);
@@ -108,7 +108,7 @@ namespace BlockBuster.Controllers
       return RedirectToAction("Index");
     }
 
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public ActionResult AddDirector(int id)
     {
       var thisMovie = _db.Movies.FirstOrDefault(movie => movie.MovieId == id);
@@ -127,7 +127,7 @@ namespace BlockBuster.Controllers
       return RedirectToAction("Index");
     }
 
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public ActionResult Delete(int id)
     {
       var thisMovie = _db.Movies.FirstOrDefault(movie => movie.MovieId == id);
