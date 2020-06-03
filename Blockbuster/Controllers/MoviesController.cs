@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System;
 
 namespace BlockBuster.Controllers
 {
@@ -26,6 +27,18 @@ namespace BlockBuster.Controllers
     {
       List<Movie> model = _db.Movies.ToList();
       return View(model);
+    }
+
+    [HttpPost]
+    public ActionResult Search(string query)
+    {
+      var movies = from m in _db.Movies
+                   select m;
+      if (!String.IsNullOrEmpty(query))
+      {
+        movies = movies.Where(m => m.Name.Contains(query));
+      }
+      return RedirectToAction("Index", movies.ToList());
     }
 
     [Authorize]

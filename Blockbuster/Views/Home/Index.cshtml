@@ -2,8 +2,16 @@
   Layout = "_Layout";
 }
 
+@model BlockBuster.Models.Movie
+
 <h1>Welcome to Blockbuster</h1>
 
+@using (Html.BeginForm("Index", "Movies"))
+{
+  <p>Search by movie:</p>
+  @Html.TextBoxFor(model => model.Name)
+  <input type ="submit" value="Search"/>
+}
 
 <p>@Html.ActionLink("Create an account", "Index", "Account")</p>
 <p>@Html.ActionLink("Log in", "Login", "Account")</p>
