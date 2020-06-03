@@ -6,12 +6,18 @@
 
 <h1>Welcome to Blockbuster</h1>
 
-@using (Html.BeginForm("Index", "Movies"))
+ @* FormMethod.Get) *@
+@* @using (Html.BeginForm("Search", "Movies", FormMethod.Get))
 {
   <p>Search by movie:</p>
-  @Html.TextBoxFor(model => model.Name)
+  @Html.TextBox()
   <input type ="submit" value="Search"/>
-}
+} *@
+
+<form action="/Search" method="Get">
+  <input type="text" name="search">
+  <button type="submit">Search</button>
+</form>
 
 <p>@Html.ActionLink("Create an account", "Index", "Account")</p>
 <p>@Html.ActionLink("Log in", "Login", "Account")</p>

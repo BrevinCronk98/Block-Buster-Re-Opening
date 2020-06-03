@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+
+@using BlockBuster.Models;
+@* @using System.Collections.Generic;
+@model IEnumerable<BlockBuster.Models.Movie>; *@
+
+
+
+<h1>Movies for @User.Identity.Name</h1>
+
+@if(Model.Count == 0)
+{
+  <p>Sorry no matches</p>
+}
+else
+{
+  @foreach(Movie movie in Model)
+  {
+      <li>@Html.ActionLink($"{movie.Name}", "Details", new { id = movie.MovieId})</li>
+  }
+}

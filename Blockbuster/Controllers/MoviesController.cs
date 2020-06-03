@@ -29,16 +29,33 @@ namespace BlockBuster.Controllers
       return View(model);
     }
 
-    [HttpPost]
-    public ActionResult Search(string query)
+    // [HttpPost]
+    // public ActionResult Search(string query)
+    // {
+
+    //   ViewBag.CurrentSearch = query;
+    //   // ViewBag.SearchParam.String.IsNullOrEmpty(query);
+    //   if (!String.IsNullOrEmpty(query))
+    //   {
+    //     var movies = from m in _db.Movies
+    //                  select m;
+    //     var searchMovies = movies.Where(n => n.Name.Contains(query));
+    //     return View(searchMovies.ToList());
+    //   }
+    //   // return RedirectToAction("Search", movies.ToList());
+    //   return View();
+    // }
+
+    [HttpGet("/Search")]
+    public ActionResult Search(string search)
     {
-      var movies = from m in _db.Movies
-                   select m;
-      if (!String.IsNullOrEmpty(query))
-      {
-        movies = movies.Where(m => m.Name.Contains(query));
-      }
-      return RedirectToAction("Index", movies.ToList());
+      var movies = from m in _db.Movies select m;
+      // if (!String.IsNullOrEmpty(searchString))
+      // {
+      movies = movies.Where(m => m.Name.Contains(search));
+      // }
+      List<Movie> model = movies.ToList();
+      return View(model);
     }
 
     [Authorize]
