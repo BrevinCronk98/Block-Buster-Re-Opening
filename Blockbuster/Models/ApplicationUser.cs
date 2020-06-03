@@ -4,9 +4,7 @@ namespace BlockBuster.Models
 {
   public class ApplicationUser : IdentityUser
   {
-    // public User()
-    // {
-
-    // }
+    public override string UserName { get; set; }
+    // public override string Email { get; set; }
   }
 }

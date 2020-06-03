@@ -28,3 +28,15 @@ body {
   overflow: auto;
   display: inline;
 }
+
+.nav li
+{
+  float: left;
+}
+
+.hello
+{
+  opacity: 0.9;
+  color: white;
+  float: right;
+}

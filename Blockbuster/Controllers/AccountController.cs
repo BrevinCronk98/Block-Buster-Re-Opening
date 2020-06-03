@@ -32,7 +32,7 @@ namespace BlockBuster.Controllers
     [HttpPost]
     public async Task<ActionResult> Register(RegisterViewModel model)
     {
-      var user = new ApplicationUser { UserName = model.Email };
+      var user = new ApplicationUser { Email = model.Email, UserName = model.UserName };
       IdentityResult result = await _userManager.CreateAsync(user, model.Password);
       if (result.Succeeded)
       {
@@ -42,6 +42,32 @@ namespace BlockBuster.Controllers
       {
         return View();
       }
+    }
+
+    public ActionResult Login()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> Login(LoginViewModel model)
+    {
+      Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, isPersistent: true, lockoutOnFailure: false);
+      if (result.Succeeded)
+      {
+        return RedirectToAction("Index");
+      }
+      else
+      {
+        return View();
+      }
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> LogOff()
+    {
+      await _signInManager.SignOutAsync();
+      return RedirectToAction("Index");
     }
   }
 }

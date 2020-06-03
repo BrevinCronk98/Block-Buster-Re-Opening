@@ -131,6 +131,7 @@ _Have a bug or an issue with this application? [Open a new issue](https://github
 ### Stretch Goals
 &#9744; Genre table
 &#9744; Connect user preferences to genre table
+&#9744; Login with email
 
 <!-- &#9745; -->
 

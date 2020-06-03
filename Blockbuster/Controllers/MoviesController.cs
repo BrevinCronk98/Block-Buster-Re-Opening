@@ -14,9 +14,11 @@ namespace BlockBuster.Controllers
   public class MoviesController : Controller
   {
     private readonly BlockBusterContext _db;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public MoviesController(BlockBusterContext db)
+    public MoviesController(UserManager<ApplicationUser> userManager, BlockBusterContext db)
     {
+      _userManager = userManager;
       _db = db;
     }
 
@@ -26,6 +28,7 @@ namespace BlockBuster.Controllers
       return View(model);
     }
 
+    [Authorize]
     public ActionResult Create()
     {
       ViewBag.DirectorId = new SelectList(_db.Directors, "DirectorId", "Name");
@@ -33,8 +36,10 @@ namespace BlockBuster.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Movie movie, int DirectorId)
+    public async Task<ActionResult> Create(Movie movie, int DirectorId)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
       _db.Movies.Add(movie);
       if (DirectorId != 0)
       {
@@ -53,6 +58,7 @@ namespace BlockBuster.Controllers
       return View(thisMovie);
     }
 
+    [Authorize]
     public ActionResult Edit(int id)
     {
       var thisMovie = _db.Movies.FirstOrDefault(movie => movie.MovieId == id);
@@ -72,6 +78,7 @@ namespace BlockBuster.Controllers
       return RedirectToAction("Index");
     }
 
+    [Authorize]
     public ActionResult AddDirector(int id)
     {
       var thisMovie = _db.Movies.FirstOrDefault(movie => movie.MovieId == id);
@@ -90,6 +97,7 @@ namespace BlockBuster.Controllers
       return RedirectToAction("Index");
     }
 
+    [Authorize]
     public ActionResult Delete(int id)
     {
       var thisMovie = _db.Movies.FirstOrDefault(movie => movie.MovieId == id);

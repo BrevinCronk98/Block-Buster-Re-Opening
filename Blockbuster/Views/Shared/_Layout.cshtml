@@ -11,6 +11,18 @@
       <li>@Html.ActionLink("Home", "Index", "Home")</li>
       <li>@Html.ActionLink("Directors", "Index", "Directors")</li>
       <li>@Html.ActionLink("Movies", "Index", "Movies")</li>
+      @if (User.Identity.IsAuthenticated)
+      {
+        <li class="hello">Hello @User.Identity.Name!</li>
+        @using (Html.BeginForm("LogOff", "Account"))
+        {
+          <input type="submit" value="Log out"/>
+        }
+      }
+      else
+      {
+        <li class="hello">Howdy stranger!</li>
+      }
     </ul>
     <div class="box">
       @RenderBody()

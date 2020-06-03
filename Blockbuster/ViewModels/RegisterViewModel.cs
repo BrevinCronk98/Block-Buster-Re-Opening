@@ -5,8 +5,8 @@ namespace BlockBuster.ViewModels
   public class RegisterViewModel
   {
     [Required]
-    [Display(Name = "Name")]
-    public string Name { get; set; }
+    [Display(Name = "Username")]
+    public string UserName { get; set; }
 
     [Required]
     [EmailAddress]
